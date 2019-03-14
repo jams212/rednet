@@ -1,0 +1,91 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Remote Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "~/workspace/OCSystem/build/OCSystem", // the program locate remote pc
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "./workspace/OCSystem/build/", // can use the relative path
+            "environment": [],
+            "externalConsole": true,
+            "pipeTransport": {
+                "pipeCwd": "", // Set empty if We have added the ssh.exe to path, or set the full path
+                "pipeProgram": "ssh.exe",
+                "pipeArgs": [
+                    "liangyu@192.168.1.203"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/usr/liangyu/workspace": "${workspaceRoot}" // [remote：local] remote must be use the absolute path
+            },
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+            "windows": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Remote Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "~/workspace/OCSystem/build/OCSystem",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "liangyu@192.168.1.203"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/usr/liangyu/workspace/OCSystem": "${workspaceRoot}"
+            },
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+            "windows": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            }
+        }
+    ]
+}

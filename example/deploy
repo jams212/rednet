@@ -1,0 +1,4 @@
+thread = 2
+module_path = ./service_cxx/?.so
+logger = logger
+bootstrap = script bootstrap
